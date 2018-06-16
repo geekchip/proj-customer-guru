@@ -1,0 +1,47 @@
+<form action="" class ="search-form">
+  <div class = "form-group">
+    <input type="text" class ="form-control" placeholder="Search git users with username"[(ngModel)]="username" name="username" (keyup)="findProfile()">
+  </div>
+</form>
+
+<div *ngIf="profile">
+  <div class = "card panel-default">
+    <div class = "card-header">
+      {{profile.name}} <small>({{profile.login}})</small>
+      ,Works at {{profile.company}}
+    </div>
+    <div class = "card-block">
+      <div class ="row">
+        <div class = "col-sm-3">
+          <img src = "{{profile.avatar_url}}" class = "img-circle img responsive" alt = "ProfileImage">
+        </div>
+        <div class = "col-sm-2">
+          
+        </div>
+        <div class = "col-sm-4">
+          <div><br>
+            <!-- <p>
+              <span class="badge">{{profile.followers}}Followers</span>
+              <span class="badge">{{profile.following}}Following</span>
+              <span class="badge">{{profile.public_gists}}Public Gists</span>
+              <span class="badge">{{profile.pubic_repos}}Public Repos</span>
+            </p> -->
+            <p><a href = "{{profile.html_url}}" target = "_blank" class = "btn btn-success btn-sm">View Profile On Github</a></p>
+            <div class ="card panel-default">
+              <div class = "card-header">
+                <h3 class = "card-title">Repos</h3>
+              </div>
+              <div class = "card-block" *ngFor= "let repo of repos">
+                <p class= "clearfix">
+                  {{repo.name}} <a href = "{{repo.html_url}}" target = "_blank" class = "btn btn-sm btn-warning pull-right">View this project on github</a>
+          
+                </p>
+                 <p> {{repo.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
